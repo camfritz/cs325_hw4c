@@ -87,37 +87,25 @@ void Board::Jump(int peg, map <int, vector<pair <int, int> > > &movesList) {
 			if(isSolved()) {
 				return;
 			}
-		}
-
-		else {
-			for(int p = 1; p < 16; p++) {
-				bool validPeg = validMoveExists(p, movesList);
-				if(validPeg == true) {
-					Jump(p, movesList);
-				}
-
-				if(isSolved()) {
-					return;
-				}
-
-			}
-			moveMade = false;
+			else {
+				moveMade = false;
+			}	
 		}	
 	}
 
-	// if(moveMade == false) {
-	// 	for(int p = 1; p < 16; p++) {
-	// 		bool validPeg = validMoveExists(p, movesList);
-	// 		if(validPeg == true) {
-	// 			Jump(p, movesList);
-	// 		}
+	if(moveMade == false) {
+		for(int p = 1; p < 16; p++) {
+			bool validPeg = validMoveExists(p, movesList);
+			if(validPeg == true) {
+				Jump(p, movesList);
+			}
 
-	// 		if(isSolved()) {
-	// 			return;
-	// 		}
+			if(isSolved()) {
+				return;
+			}
 			
-	// 	}
-	// }
+		}
+	}
 
 	if(moveMade == false && stateList.size() > 0) {
 		stateList.pop_back();
